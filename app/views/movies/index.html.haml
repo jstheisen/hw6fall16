@@ -1,4 +1,3 @@
--#  This file is app/views/movies/index.html.haml
 %h1 All Movies
 
 = form_tag movies_path, :method => :get, :id => 'ratings_form' do
@@ -24,10 +23,13 @@
         %td= movie.rating
         %td= movie.release_date
         %td= link_to "More about #{movie.title}", movie_path(movie)
-        
-= form_tag :action => 'search_tmdb' do
-  %label{:for => 'search_terms'} Search for movie titles containing:
-  = text_field_tag 'search_terms'
-  = submit_tag 'Search TMDB'
+
+
+
+= form_tag :action => 'search_tmdb' do 
+
+  %label{:for => 'search_box'} Search for movie titles containing:
+  = text_field_tag 'search_box'
+  = submit_tag 'Search TMDb', :id => "search_button"
 
 = link_to 'Add new movie', new_movie_path
