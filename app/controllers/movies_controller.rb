@@ -88,6 +88,7 @@ class MoviesController < ApplicationController
     
     if selected_movies.empty?
       flash[:warning]= "No movies were selected to add"
+      redirect_to movies_path
     else tmdb_ids.each do |i|
       Movie.create_from_tmdb(i)
     end 
