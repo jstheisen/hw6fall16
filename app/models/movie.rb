@@ -25,14 +25,14 @@ class Movie < ActiveRecord::Base
         h[:title] = m.title
 ######################################################        
         rating = Tmdb::Movie.releases(m.id)
-        if rating['countries'].empty? then rating = "Not found"
+        if rating['countries'].empty? then rating = "NR"
         else
           rating = rating['countries'].select{|s| s['iso_3166_1']=='US'}
           if(rating.count > 0)
             rating = rating[0]['certification'] 
           end
         end
-        if rating.empty? then rating = "Not found"
+        if rating.empty? then rating = "NR"
         end 
         h[:rating] = rating
 ##########################################################        
@@ -55,14 +55,14 @@ class Movie < ActiveRecord::Base
     m[:description] = details['overview']
     ######################################################        
     rating = Tmdb::Movie.releases(id)
-    if rating['countries'].empty? then rating = "Not found"
+    if rating['countries'].empty? then rating = "NR"
     else
       rating = rating['countries'].select{|s| s['iso_3166_1']=='US'}
       if(rating.count > 0)
         rating = rating[0]['certification'] 
       end
     end
-    if rating.empty? then rating = "Not found"
+    if rating.empty? then rating = "NR"
     end 
     m[:rating] = rating
 ##########################################################
