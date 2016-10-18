@@ -84,11 +84,12 @@ class MoviesController < ApplicationController
   def add_tmdb_movies
     
     selected_movies = params[:tmdb_movies]
-    tmdb_ids = selected_movies.keys
     
-    if selected_movies.empty?
+    if !selected_movies == nil
+      tmdb_ids = selected_movies.keys
+    end
+    if selected_movies == nil
       flash[:warning]= "No movies were selected to add"
-      redirect_to movies_path
     else tmdb_ids.each do |i|
       Movie.create_from_tmdb(i)
     end 
